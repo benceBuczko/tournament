@@ -4,8 +4,7 @@
         <button id="play" ng-show="!toggleButton" ng-click="restartInterval()">Play</button>
     </div>
     <div class="col-sm-10 text-center">
-        <h1>Teams</h1>
+        <h1>Final Countdown</h1>
         <div class="team" ng-repeat="team in teams">{{team.name}}</div>
     </div>
 </div>
-<div class="fadein" ng-include="'/groupsView/groupsView.html'" ng-show="showGroups"></div>

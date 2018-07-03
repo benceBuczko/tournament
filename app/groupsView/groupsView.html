@@ -1,0 +1,28 @@
+<div class="row justify-content-center">
+    <h1>Group matches - Round {{round}}</h1>
+</div>
+<div class="row">
+    <div class="col-lg-3" ng-repeat="group in groups">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{group.name}}</h5>
+              <ul class="card-text">
+                <li ng-repeat="team in group.teams" ng-class="group.teams.indexOf(team) === 1  ? 'second-in-semi': ''">{{team.name}} ({{team.semiScore}})</li>
+              </ul>
+              <a class="btn btn-primary" data-toggle="collapse" href="#match{{group.id}}" target="_SELF" role="button" aria-expanded="false" aria-controls="{{group.id}}">
+                Show Matches
+              </a>
+            </div>
+        </div>
+        <div class="collapse" id="match{{group.id}}">
+            <div class="card card-body">
+              <ul class="matchlist">
+                <li ng-repeat="match in group.matches">{{match.teams[0].name}} - {{match.teams[1].name}} <br> {{match.score}} Winner: {{match.winner}}</li>
+              </ul>
+            </div>
+          </div>
+    </div>
+</div>
+<a class="btn btn-primary" ng-show="nextPage" href="/#/final">
+    To the Finals
+  </a>

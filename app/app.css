@@ -28,3 +28,42 @@ button:focus {
 #stop{
   background-color: #f44336;
 }
+.card{
+  text-align: center;
+  max-width: 300px;
+  margin:auto;
+  margin-bottom: 20px;
+}
+ul {
+  list-style-type: none;
+  margin: 0; 
+  padding: 0;
+}
+
+ul:not(.matchlist) li:before {
+  content: '';
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  background-size: 10px;
+  background-image: url("https://cdn4.iconfinder.com/data/icons/soccer-american-football/100/f-01-512.png");
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
+.matchlist > li{
+  margin-bottom: 10px;
+}
+.second-in-semi:after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  border-bottom: 2px dotted grey;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fadein{
+  animation: fadein 2s;
+}

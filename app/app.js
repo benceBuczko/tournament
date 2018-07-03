@@ -4,6 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.teamView',
+  'myApp.finalsView',
   'teamService'
 ]).
 config(['$routeProvider', function( $routeProvider) {
