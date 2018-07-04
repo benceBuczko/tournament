@@ -9,22 +9,24 @@ angular.module('myApp.teamView', ['ngRoute'])
   });
 }])
 
-.controller('TeamsView', ['$scope','Team', '$interval', 'teamService', function($scope,Team,$interval, teamService) {
+.controller('TeamsView', ['$scope', '$interval', 'teamService', function($scope,$interval, teamService) {
     $scope.show = false;
     $scope.toggleButton = false;
     $scope.showGroups = false;
     $scope.round = 0;
     $scope.nextPage = false;
     $scope.teamNames = ["Argentina", "Australia", "Belgium", "Brazil", "Colombia", "Costa Rica", "Croatia", "Denmark", "Egypt", "England", "France", "Germany", "Iceland", "Iran", "Japan", "Korea Republic", "Mexico", "Morocco", "Nigeria", "Panama", "Peru", "Poland", "Portugal", "Russia", "Saudi Arabia", "Senegal", "Serbia", "Spain", "Sweden", "Switzerland","Tunisia", "Uruguay"];
-    Team.get(function(data){
+    $scope.bet = $scope.teamNames[0];
+    teamService.getTeamMembers.get(function(data){
       $scope.teams = Array(32).fill().map((team, i)=>{
         team = { id: i, name: $scope.teamNames[i], members: Array(11), win: false, score: 0, semiScore: 0, goals: 0};
         team.members = team.members.fill().map((member, index)=>{
-          member = data.results[(i+1)*index].name.first + " " + data.results[i+1*index].name.last;
+          member = $scope.capitalizeFirstLetter(data.results[(i+1)*index].name.first) + " " + $scope.capitalizeFirstLetter(data.results[i+1*index].name.last);
           return member;
         })
         return team;
       });
+      $scope.shuffle($scope.teams);
       $scope.groups = Array(8).fill().map((group, index)=>{
         group = {id: index, name: "Group " + String.fromCharCode('A'.charCodeAt() + index), teams: Array(4), matches:Array(6)};
         group.teams = group.teams.fill().map((team, index2) => $scope.teams[index*4 + index2]);
@@ -41,6 +43,14 @@ angular.module('myApp.teamView', ['ngRoute'])
         });
         return group;
       });
+      $scope.teams.sort((a,b)=>{
+        if (a.name < b.name) {
+          return -1;
+        } else if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      });
       $scope.show = true;
     });
     $scope.stopInterval = function(){
@@ -50,6 +60,7 @@ angular.module('myApp.teamView', ['ngRoute'])
     $scope.restartInterval = function(){
       $scope.toggleButton = true;
       $scope.showGroups = true;
+      teamService.setBet($scope.bet);
       $scope.interval = $interval(() => {
         if($scope.round > 1 ){
           $interval.cancel($scope.interval);
@@ -95,7 +106,7 @@ angular.module('myApp.teamView', ['ngRoute'])
         });
       });
       if($scope.round > 2){
-        teamService.set(Array(16).fill().map((team, index) => {
+        teamService.setGroupWinners(Array(16).fill().map((team, index) => {
           let teamIndex = (index % 2 === 0) ? 0 : 1;
           return $scope.groups[Math.floor(index/2)].teams[teamIndex];
         }));
@@ -109,4 +120,7 @@ angular.module('myApp.teamView', ['ngRoute'])
     }
     return a;
     }
+    $scope.capitalizeFirstLetter = function(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 }]);

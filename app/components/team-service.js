@@ -1,25 +1,37 @@
 var teamService = angular.module('teamService', ['ngResource']);
 
-teamService.factory('Team', ['$resource',
-function($resource){
-  return $resource('https://randomuser.me/api/?results=352', {}, {
-    query: {method:'GET'}
-  });
-}]);
-
-teamService.factory('teamService', function() {
-  var savedData = {}
-  function set(data) {
-    savedData = data;
+teamService.factory('teamService', ['$resource', function($resource) {
+  var groupWinners;
+  var winner;
+  var bet;
+  function setGroupWinners(data) {
+    groupWinners = data;
   }
-  function get() {
-   return savedData;
+  function getGroupWinners() {
+   return groupWinners;
   }
- 
+  function setWinner(data){
+    winner = data;
+  }
+  function getWinner(){
+    return winner;
+  }
+  function setBet(data){
+    bet = data;
+  }
+  function getBet(){
+    return bet;
+  }
   return {
-   set: set,
-   get: get
+   setGroupWinners: setGroupWinners,
+   getGroupWinners: getGroupWinners,
+   setWinner: setWinner,
+   getWinner: getWinner,
+   setBet: setBet,
+   getBet: getBet,
+   getTeamMembers: $resource('https://randomuser.me/api/?results=352', {}, {
+    query: {method:'GET'}
+  })
   }
- 
- });
+}]);
  

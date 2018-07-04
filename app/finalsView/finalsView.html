@@ -1,10 +1,52 @@
-<div class="row fadein" ng-show="show">
+<div class="row fadein">
     <div class="col-sm-2">
         <button id="stop" ng-show="toggleButton" ng-click="stopInterval()">Stop</button>
         <button id="play" ng-show="!toggleButton" ng-click="restartInterval()">Play</button>
     </div>
-    <div class="col-sm-10 text-center">
+    <div class="col-sm-8 text-center">
         <h1>Final Countdown</h1>
         <div class="team" ng-repeat="team in teams">{{team.name}}</div>
     </div>
+    <div class="col-sm-2">
+        <p>Your bet was: {{bet}}</p>
+        <p ng-if="!isStillHope">Loser...</p>
+    </div>
 </div>
+<div class="row finals">
+    <div class="col-sm-2" ng-show="showTeams">
+        <div ng-repeat="team in rounds.first" ng-if="$index < 8 && $index % 2 === 0">
+            <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}" >{{team.name}} ({{team.score}})</button>
+            <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': rounds.first[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{rounds.first[$index + 1].members.join('<br>')}}">{{rounds.first[$index + 1].name}} ({{rounds.first[$index + 1].score}})</button>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div ng-repeat="team in rounds.second" ng-if="$index < 4 && $index % 2 === 0">
+            <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}">{{team.name}} ({{team.score}})</button>
+            <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': rounds.second[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{rounds.second[$index + 1].members.join('<br>')}}">{{rounds.second[$index + 1].name}} ({{rounds.second[$index + 1].score}})</button>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div ng-repeat="team in rounds.third" ng-if="$index < 2 && $index % 2 === 0">
+            <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}">{{team.name}} ({{team.score}})</button>
+            <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': rounds.third[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{rounds.third[$index + 1].members.join('<br>')}}">{{rounds.third[$index + 1].name}} ({{rounds.third[$index + 1].score}})</button>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div ng-repeat="team in rounds.third" ng-if="$index >= 2 && $index % 2 === 0">
+            <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}">{{team.name}} ({{team.score}})</button>
+            <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': rounds.third[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{rounds.third[$index + 1].members.join('<br>')}}">{{rounds.third[$index + 1].name}} ({{rounds.third[$index + 1].score}})</button>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div ng-repeat="team in rounds.second" ng-if="$index >= 4 && $index % 2 === 0">
+            <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}">{{team.name}} ({{team.score}})</button>
+            <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': rounds.second[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{rounds.second[$index + 1].members.join('<br>')}}">{{rounds.second[$index + 1].name}} ({{rounds.second[$index + 1].score}})</button>
+        </div>
+    </div>
+    <div class="col-sm-2" ng-show="showTeams">
+        <div ng-repeat="team in rounds.first" ng-if="$index >= 8 && $index % 2 === 0">
+            <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}">{{team.name}} ({{team.score}})</button>
+            <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': rounds.first[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{rounds.first[$index + 1].members.join('<br>')}}">{{rounds.first[$index + 1].name}} ({{rounds.first[$index + 1].score}})</button>
+        </div>
+    </div>
+  </div>

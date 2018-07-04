@@ -1,4 +1,4 @@
-/* app css stylesheet */
+/* General css */
 body{
   font-family: 'Shrikhand', cursive;
 }
@@ -6,6 +6,7 @@ body{
   display: inline-block;
   margin: 10px;
 }
+
 button:focus {
   outline:0;
 }
@@ -28,6 +29,18 @@ button:focus {
 #stop{
   background-color: #f44336;
 }
+#replay{
+  max-width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: green;
+  transition: background-color 2s;
+}
+#replay:hover{
+  background-color: red;
+}
+
+/*Groups view*/
 .card{
   text-align: center;
   max-width: 300px;
@@ -60,6 +73,42 @@ ul:not(.matchlist) li:before {
   width: 50%;
   border-bottom: 2px dotted grey;
 }
+
+/*Finals view*/
+.team-in-column{
+  min-width: 100%;
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.win{
+  background-color: green;
+}
+
+.firstpair{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.secondpair{
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.finals > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 500px;
+}
+/*Animations*/
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
