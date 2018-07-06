@@ -21,12 +21,12 @@ angular.module('myApp.teamView', ['ngRoute'])
       $scope.teams = Array(32).fill().map((team, i)=>{
         team = { id: i, name: $scope.teamNames[i], members: Array(11), win: false, score: 0, semiScore: 0, goals: 0};
         team.members = team.members.fill().map((member, index)=>{
-          member = $scope.capitalizeFirstLetter(data.results[(i+1)*index].name.first) + " " + $scope.capitalizeFirstLetter(data.results[i+1*index].name.last);
+          member = capitalizeFirstLetter(data.results[(i+1)*index].name.first) + " " + capitalizeFirstLetter(data.results[i+1*index].name.last);
           return member;
         })
         return team;
       });
-      $scope.shuffle($scope.teams);
+      shuffle($scope.teams);
       $scope.groups = Array(8).fill().map((group, index)=>{
         group = {id: index, name: "Group " + String.fromCharCode('A'.charCodeAt() + index), teams: Array(4), matches:Array(6)};
         group.teams = group.teams.fill().map((team, index2) => $scope.teams[index*4 + index2]);
@@ -67,9 +67,6 @@ angular.module('myApp.teamView', ['ngRoute'])
         }
         $scope.game();
       }, 2000);
-    }
-    $scope.showMatches = function(id){
-      document.getElementById("match"+ id).classList.toggle("show");
     }
     $scope.game = function(){
       $scope.round++;
@@ -113,14 +110,17 @@ angular.module('myApp.teamView', ['ngRoute'])
         $scope.nextPage = true;
       }
     }
-    $scope.shuffle = function(a){
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-    }
-    $scope.capitalizeFirstLetter = function(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 }]);
+
+/*Utils*/
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function shuffle(a){
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+}
+return a;
+}
