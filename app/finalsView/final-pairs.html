@@ -1,0 +1,4 @@
+<div ng-repeat="team in teams" ng-if="(greater ? $index < indexLimit : $index >= indexLimit) && $index % 2 === 0">
+        <button type="button" class="team-in-column fadein firstpair" ng-class="{'win': team.win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{team.members.join('<br>')}}" >{{team.name}} ({{team.score}})</button>
+        <button type="button" class="team-in-column fadein secondpair" ng-class="{'win': teams[$index + 1].win}" data-toggle="popover" title="Members" data-trigger="focus" data-html="true" ng-attr-data-content="{{teams[$index + 1].members.join('<br>')}}">{{teams[$index + 1].name}} ({{teams[$index + 1].score}})</button>
+</div>

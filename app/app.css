@@ -6,9 +6,22 @@ body{
   display: inline-block;
   margin: 10px;
 }
-
+.footer{
+  background-color: #343a40;
+  color: white;
+}
+hr {
+  border-top: 2px solid rgba(0,0,0,.1);
+}
 button:focus {
   outline:0;
+}
+#nextPage{
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 150px;
 }
 #play, #stop, #replay{
   margin-top: 40px;
@@ -102,7 +115,7 @@ ul:not(.matchlist) li:before {
   border-bottom-right-radius: 25px;
 }
 
-.finals > div {
+.finals > div > final-pairs {
   display: flex;
   flex-direction: column;
   justify-content: space-around;

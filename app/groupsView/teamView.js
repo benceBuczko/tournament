@@ -4,7 +4,7 @@ angular.module('myApp.teamView', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'teamView/teamView.html',
+    templateUrl: 'groupsView/teamView.html',
     controller: 'TeamsView'
   });
 }])

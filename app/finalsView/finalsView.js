@@ -7,9 +7,23 @@ angular.module('myApp.finalsView', ['ngRoute'])
   });
 }])
 
+.directive('finalPairs', function() {
+  return {
+    restrict: 'E',
+    transclude: true,
+    scope: {
+      teams: '=',
+      indexLimit: "=",
+      greater: '='
+    },
+    templateUrl: 'finalsView/final-pairs.html'
+  };
+})
+
 .controller('FinalsView', ['$scope', '$interval', 'teamService','$location', function($scope,$interval, teamService, $location) {
     if(teamService.getGroupWinners() === undefined){
         $location.path("/");
+        return;
     }
     $scope.teams = teamService.getGroupWinners();
     $scope.currentTeams;
