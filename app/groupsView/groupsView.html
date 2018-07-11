@@ -1,18 +1,18 @@
 <hr>
 <div class="row justify-content-center">
-    <h1>Group matches - Round {{round}}</h1>
+    <h1 id="groupHeader">Group matches - Round {{round}}</h1>
 </div>
 <div class="row">
     <div class="col-lg-3" ng-repeat="group in groups">
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{group.name}}</h5>
-              <ul class="card-text">
-                <li ng-repeat="team in group.teams" ng-class="group.teams.indexOf(team) === 1  ? 'second-in-semi': ''">{{team.name}} ({{team.semiScore}})</li>
-              </ul>
-              <a class="btn btn-primary" data-toggle="collapse" href="#match{{group.id}}" target="_SELF" role="button" aria-expanded="false" aria-controls="{{group.id}}">
-                Show Matches
-              </a>
+                <ul class="card-text">
+                  <li ng-repeat="team in group.teams" ng-class="group.teams.indexOf(team) === 1  ? 'second-in-semi': ''">{{team.name}} ({{team.semiScore}})</li>
+                </ul>
+                <a class="btn btn-primary" data-toggle="collapse" href="#match{{group.id}}" target="_SELF" role="button" aria-expanded="false" aria-controls="{{group.id}}">
+                  Show Matches
+                </a>
             </div>
         </div>
         <div class="collapse" id="match{{group.id}}">
@@ -24,7 +24,7 @@
           </div>
     </div>
 </div>
-<div class="row" ng-if="nextPage">
+<div class="row" ng-show="nextPage">
   <div class="col">
     <a class="btn btn-primary fadein" id="nextPage" href="/#/final">To the Finals</a>
   </div>

@@ -5,7 +5,7 @@
     </div>
     <div class="col-sm-8 text-center">
         <h1>Final Countdown</h1>
-        <div class="team" ng-repeat="team in teams">{{team.name}}</div>
+        <div class="team" ng-repeat="team in teams"><img ng-src="img/{{team.img}}" width="16" height="12"/> {{team.name}}</div>
     </div>
     <div class="col-sm-2">
         <p>Your bet was: {{bet}}</p>

@@ -6,7 +6,7 @@ angular.module('myApp', [
   'myApp.teamView',
   'myApp.finalsView',
   'myApp.winnerView',
-  'teamService'
+  'myApp.teamService'
 ]).
 config(['$routeProvider', function( $routeProvider) {
   $routeProvider.otherwise({redirectTo: '/'});

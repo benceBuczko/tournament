@@ -5,13 +5,13 @@
     </div>
     <div class="col-sm-8 text-center">
         <h1>Teams</h1>
-        <div class="team" ng-repeat="team in teams">{{team.name}}</div>
+        <div class="team" ng-repeat="team in teams"><img ng-src="img/{{team.img}}" width="16" height="12"/> {{team.name}}</div>
     </div>
     <div class="col-sm-2">
         <div class="form-group">
             <label for="exampleFormControlSelect2">Who will win?</label>
             <select class="form-control" id="exampleFormControlSelect2" ng-model="bet" ng-disabled="showGroups">
-            <option ng-repeat="team in teams">{{team.name}}</option>
+                <option ng-repeat="team in teams">{{team.name}}</option>
             </select>
         </div>
     </div>

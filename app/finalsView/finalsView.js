@@ -25,6 +25,7 @@ angular.module('myApp.finalsView', ['ngRoute'])
         $location.path("/");
         return;
     }
+    window.scrollTo(0,0);
     $scope.teams = teamService.getGroupWinners();
     $scope.currentTeams;
     $scope.round = 0;
